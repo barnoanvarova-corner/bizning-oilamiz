@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bizning oilamiz 🌸</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+  :root {
+    --pink: #f7c8d8;
+    --deep: #a94f73;
+    --soft: #fff4f7;
+    --ink: #563846;
+    --line: #d98eaa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--ink);
+    background: linear-gradient(135deg, #fff7fa, #fce5ed);
+    min-height: 100vh;
+  }
+  header { text-align: center; padding: 34px 16px 18px; }
+  h1 { color: var(--deep); font-size: clamp(2rem, 5vw, 3.2rem); margin: 0 0 8px; }
+  header p { margin: 0; color: #916274; font-size: 1.05rem; }
+  .decor { font-size: 1.4rem; letter-spacing: 8px; margin-bottom: 10px; }
+  .toolbar {
+    display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+    padding: 10px 16px 20px;
+  }
+  button {
+    border: 1px solid #e8a9bf; background: #fff; color: var(--deep);
+    border-radius: 24px; padding: 10px 17px; font-size: .95rem;
+    cursor: pointer; box-shadow: 0 3px 12px #dca1b533;
+  }
+  button:hover { background: var(--soft); }
+  .hint { text-align:center; padding: 0 16px 14px; color:#916274; font: .9rem Arial,sans-serif; }
+  .tree-wrap {
+    margin: 0 auto 35px; width: min(96%, 1500px); overflow: auto;
+    background: #ffffffc9; border: 1px solid #f0c5d4; border-radius: 22px;
+    box-shadow: 0 12px 35px #b66a8520; padding: 22px; min-height: 420px;
+  }
+  #tree { min-width: 950px; display:flex; justify-content:center; }
+  #tree svg { max-width: none; height: auto; }
+  footer { text-align:center; color:#a8798c; padding: 4px 16px 30px; font: .85rem Arial,sans-serif; }
+  @media(max-width:600px) { .tree-wrap { width: 98%; padding: 10px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="decor">🌸 ✿ 🌷 ✿ 🌸</div>
+  <h1>Bizning oilamiz</h1>
+  <p>Avlodlarimiz tarixi va oilaviy ildizlarimiz</p>
+</header>
+<div class="toolbar">
+  <button onclick="zoom(1.15)">Kattalashtirish +</button>
+  <button onclick="zoom(0.87)">Kichraytirish −</button>
+  <button onclick="resetZoom()">Asl holat</button>
+</div>
+<div class="hint">Daraxtni yon tomonga surish uchun sichqoncha yoki barmoq bilan harakatlantiring.</div>
+<main class="tree-wrap" id="viewport">
+  <div id="tree"></div>
+</main>
+<footer>Mehr va xotiralar bilan tuzilgan oilaviy daraxt 💗</footer>
+
+<script>
+mermaid.initialize({
+  startOnLoad: false,
+  theme: "base",
+  flowchart: { curve: "basis", htmlLabels: true, nodeSpacing: 35, rankSpacing: 65, padding: 14 },
+  themeVariables: {
+    primaryColor: "#fff0f5",
+    primaryTextColor: "#563846",
+    primaryBorderColor: "#d98eaa",
+    lineColor: "#cf88a4",
+    secondaryColor: "#fde1eb",
+    tertiaryColor: "#fff8fa",
+    fontFamily: "Georgia",
+    fontSize: "16px"
+  }
+});
+
+const diagram = `
+flowchart TB
+  subgraph OLD["Eng qadimgi avlod"]
+    AJ["Abdujabborxon<br/>1896–1984"] --- ZR["Zarofatxon<br/>1903–1973"]
+  end
+  AJ --> AB["Abdulla Vahabov<br/>1924–1970"]
+  ZR --> AB
+  AB --- NU["Nurinisa Vahabova<br/>1927–2009"]
+  AB --> AN["Vahabor Anvar<br/>1950"]
+  NU --> AN
+
+  AN --- GU["Vahabova Gulchehra<br/>1955"]
+  MH["Mirxodi Ota<br/>1917–1995"] --- KH["Xolidaxon<br/>1924–2009"]
+  MH --> GU
+  KH --> GU
+
+  AB --> TJ["Tojivoy<br/>1957"]
+  AB --> RU["Rustamxon<br/>1960"]
+  AB --> AA["Abbosxon<br/>1962"]
+  AB --> AK["Abduqahhorxon<br/>1965"]
+
+  MH --> MU["Muhabbat<br/>1947–2016"]
+  MH --> FO["Fotimaxon<br/>1949–2011"]
+  MH --> HU["Husanboy<br/>1949–2019"]
+  MH --> MF["Mirfozil<br/>1949"]
+  MH --> TO["Tohirjon<br/>1953–2003"]
+  MH --> BA["Baxtiyor<br/>1958"]
+
+  AN --- GU
+  AN --> VA["Vahabov Aloxon<br/>1983"]
+  GU --> VA
+  AN --> JA["Jamilaxon<br/>1977"]
+  GU --> JA
+  AN --> AKM["Vahabov Akmal<br/>1979"]
+  GU --> AKM
+  AN --> ZA["Zamiraxon<br/>1981"]
+  GU --> ZA
+  AN --> OL["Olimxon Vahabov<br/>1989"]
+  GU --> OL
+
+  VA --- GD["Guzal Daniyarovna<br/>1989"]
+  VA --> BAR["Anvarova Barnoxon<br/>2008"]
+  GD --> BAR
+
+  classDef person fill:#fff0f5,stroke:#d98eaa,color:#563846,stroke-width:1.5px;
+  classDef living fill:#ffe2ec,stroke:#c96f91,color:#563846,stroke-width:2px;
+  class AJ,ZR,AB,NU,AN,GU,MH,KH,TJ,RU,AA,AK,MU,FO,HU,MF,TO,BA,JA,AKM,ZA,OL,VA,GD,BAR person;
+  class BAR living;
+  style OLD fill:#fff8fa,stroke:#edc1d1,stroke-dasharray: 5 5
+`;
+
+let scale = 1;
+async function draw() {
+  const { svg } = await mermaid.render("familyTreeSvg", diagram);
+  document.getElementById("tree").innerHTML = svg;
+  applyZoom();
+}
+function applyZoom() {
+  const svg = document.querySelector("#tree svg");
+  if (svg) {
+    svg.style.transform = `scale(${scale})`;
+    svg.style.transformOrigin = "top center";
+  }
+}
+function zoom(factor) { scale = Math.max(0.45, Math.min(2.2, scale * factor)); applyZoom(); }
+function resetZoom() { scale = 1; applyZoom(); }
+draw();
+</script>
+</body>
+</html>
